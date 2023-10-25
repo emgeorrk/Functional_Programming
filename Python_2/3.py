@@ -1,5 +1,3 @@
-from functools import reduce
-
 orders = [
     {"order_id": 1, "customer_id": 101, "amount": 150.0},
     {"order_id": 2, "customer_id": 102, "amount": 200.0},
@@ -31,7 +29,8 @@ def filter_elements(user):
     else: return False
 
 orders = list(filter(filter_elements, orders))
+for x in orders: print(x)
 amounts = list(zip([x["customer_id"] for x in orders], [y["amount"] for y in orders]))
 summa = sum([x[1] for x in amounts])
-print(summa)
-print(summa*1.0/len(amounts))
+print("Sum = ", summa)
+print("Avg sum = ", round(summa*1.0/len(amounts), 3))

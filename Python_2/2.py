@@ -23,15 +23,20 @@ users = [
     {"name": "Xander", "expenses": [350, 400, 330, 450]}
 ]
 
-def filter_elemrnts(user):
-    return True
+def filter_elements(user):
+    return user["expenses_sum"] >= min_sum
 
 def get_expenses_sum(user):
     user["expenses_sum"] = sum(user["expenses"])
     return user
 
 
-users = list(filter(filter_elemrnts, users))
+print("Minimum expenses sum: ", end = '')
+min_sum = int(input())
 users = list(map(get_expenses_sum, users))
+users = list(filter(filter_elements, users))
 
+print(f"All the users with expenses sum not less than {min_sum}:")
+for x in users: print(x)
+print(f"Sum of expenses of this users = ", end = '')
 print(reduce(lambda x, y: x+y["expenses_sum"], users, users[0]["expenses_sum"]))

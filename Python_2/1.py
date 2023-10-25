@@ -21,18 +21,28 @@ students = [
     {"name": "Wendy", "age": 21, "grades": [88, 91, 87, 93]}
 ]
 
+
 def avg(student):
-    student["avg_grade"] = sum(student["grades"])*1.0/len(student["grades"])
+    student["avg_grade"] = sum(student["grades"]) * 1.0 / len(student["grades"])
     return student
 
-def filter_elemrnts(student):
-    return True
+
+def filter_elements(student):
+    return student["age"] == age
 
 
-students = list(filter(filter_elemrnts, students))
+print("Age: ", end='')
+age = int(input())
+students = list(filter(filter_elements, students))
 students = list(map(avg, students))
-students.sort(key = lambda x: x["avg_grade"], reverse=True)
+students.sort(key=lambda x: x["avg_grade"], reverse=True)
 
+print(f"All the students with age {age}:")
+for x in students: print(x)
+
+print(f"Best students with age {age}:")
 for i in range(len(students)):
-    if students[0]["avg_grade"] == students[i]["avg_grade"]: print(students[i])
-    else: break
+    if students[0]["avg_grade"] == students[i]["avg_grade"]:
+        print(students[i])
+    else:
+        break
